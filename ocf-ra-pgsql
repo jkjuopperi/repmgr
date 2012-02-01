@@ -86,7 +86,7 @@ Path to repmgr command.
 Path to repmgr config file.
 </longdesc>
 <shortdesc lang="en">repmgr_conf</shortdesc>
-<content type="string" default="/var/lib/pgsql/data" />
+<content type="string" default="/var/lib/pgsql/repmgr/repmgr.conf" />
 </parameter>
 
 <parameter name="repmgr_clone_opt" unique="0" required="0">
@@ -107,10 +107,10 @@ Path to pg_ctl command.
 
 <parameter name="start_opt" unique="0" required="0">
 <longdesc lang="en">
-Start options (-o start_opt in pgi_ctl). "-i -p 5432" for example.
+Start options (-o start_opt in pg_ctl). "-i -p 5432" for example.
 </longdesc>
 <shortdesc lang="en">start_opt</shortdesc>
-<content type="string" default="" />
+<content type="string" default="-p 5432" />
 </parameter>
 
 <parameter name="ctl_opt" unique="0" required="0">
@@ -151,14 +151,6 @@ User that owns PostgreSQL.
 </longdesc>
 <shortdesc lang="en">pgdba</shortdesc>
 <content type="string" default="postgres" />
-</parameter>
-
-<parameter name="pghost" unique="0" required="0">
-<longdesc lang="en">
-Hostname/IP Addreess where PosrgeSQL is listening
-</longdesc>
-<shortdesc lang="en">pghost</shortdesc>
-<content type="string" default="" />
 </parameter>
 
 <parameter name="pgport" unique="0" required="0">
@@ -309,7 +301,7 @@ pg_state_check() {
 	then
 		return $OCF_NOT_RUNNING
 	else
-		ocf_log info "PostgreSQL proccess exist..."
+		ocf_log info "PostgreSQL process exists..."
 	fi
 
 	run_repmgr -f ${OCF_RESKEY_repmgr_conf} state check
