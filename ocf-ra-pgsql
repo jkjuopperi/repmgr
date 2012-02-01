@@ -137,6 +137,14 @@ Path to PostgreSQL data directory.
 <content type="string" default="/var/lib/pgsql/data" />
 </parameter>
 
+<parameter name="pgconfig" unique="0" required="0">
+<longdesc lang="en">
+Path to PostgreSQL configuration file.
+</longdesc>
+<shortdesc lang="en">pgconfig</shortdesc>
+<content type="string" default="/var/lib/pgsql/data/postgresql.conf" />
+</parameter>
+
 <parameter name="pgdba" unique="0" required="0">
 <longdesc lang="en">
 User that owns PostgreSQL.
